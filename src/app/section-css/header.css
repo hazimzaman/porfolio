@@ -1,0 +1,22 @@
+/* Header Section Styles */
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  padding: var(--padding-m) var(--padding-m);
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1920px !important;
+  width: 100%;
+}
+
+.header__cta-btn-wrapper {
+  width: auto;
+}

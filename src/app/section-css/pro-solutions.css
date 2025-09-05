@@ -1,0 +1,213 @@
+/* Main section with content grid */
+.pro-solutions {
+  padding: var(--section-xl) 0;
+  background-color: var(--color-black);
+  position: relative;
+}
+
+/* Default: All children go to content zone */
+.pro-solutions > * {
+  grid-column: content;
+}
+
+/* Title stays in content zone */
+.pro-solutions__title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  grid-column: content; /* Explicit content zone */
+  width: 100%;
+}
+
+.pro-solutions__inner {
+  max-width: var(--content-width);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: var(--space-xl);
+  z-index: 999999999;
+}
+
+.pro-solutions .bg-blocks-wrapper {
+  z-index: 2;
+}
+
+/* Title styling */
+.pro-solutions__title {
+  font-size: var(--heading-h2);
+  line-height: var(--lineheight-h2);
+  font-family: var(--font-heading);
+  color: var(--color-white);
+  margin-bottom: var(--space-m);
+  text-transform: uppercase;
+  max-width: 22ch;
+}
+
+.pro-solution__content-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+  padding-bottom: var(--space-xxl);
+  max-width: 815px;
+  z-index: 999;
+}
+
+/* Content wrapper (left column) */
+.pro-solution__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.pro-solutions__media-wrapper {
+  position: absolute;
+  top: 30%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Media wrapper (right column) */
+.pro-solutions__media {
+  /* Second column of the internal grid */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: -1;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--color-black);
+}
+
+.pro-solution__media-image {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content styling */
+.pro-solution__content-heading {
+  color: var(--color-white);
+  margin-bottom: var(--space-s);
+}
+
+.pro-solution__problems-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.pro-solution__item {
+  display: flex;
+  gap: var(--space-m);
+}
+
+.pro-solution__item-icon-wrapper {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  /* Default: Odd items get primary color */
+  background-color: var(--color-primary);
+  box-shadow: 0px 0px 84px #ff751b;
+}
+
+/* Even items get white background */
+.pro-solution__item:nth-child(even) .pro-solution__item-icon-wrapper {
+  background-color: var(--color-white);
+  box-shadow: 0px 0px 84px rgba(255, 255, 255, 0.4);
+}
+
+.pro-solution__item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pro-solution__item-heading {
+  color: var(--color-primary);
+  font-size: var(--text-large);
+  text-transform: capitalize;
+}
+
+.pro-solution__item-description {
+  color: var(--color-white);
+  opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pro-solution__grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: var(--space-l);
+    text-align: center;
+  }
+
+  .pro-solutions__title {
+    max-width: none;
+  }
+}
+
+.left-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 19.46%);
+  top: 0;
+  left: 0;
+}
+
+.top-gradient {
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 12.06%);
+  top: 0;
+  left: 0;
+}
+
+.right-gradient {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(270deg, #000000 0%, rgba(0, 0, 0, 0) 36.43%);
+  top: 0;
+  right: 0;
+}
+
+.bottom-gradient {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(360deg, #000000 1.18%, rgba(0, 0, 0, 0) 32.48%);
+  bottom: 0;
+  right: 0;
+}
+
+.pro-solutions__title .highlight-mark:first-child .highlight-selectors {
+  left: -3%;
+}
+
+.pro-solutions__title .highlight-mark:first-child {
+  margin: 0px 20px;
+}
+
+.pro-solutions__title .highlight-mark:nth-of-type(2) .highlight-selectors {
+  left: -4%;
+}
+
+.pro-solutions__title .black-bold {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}

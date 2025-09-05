@@ -1,0 +1,57 @@
+/* Fix SVG overflow clipping issue */
+.highlight-mark svg {
+  overflow: visible !important;
+}
+
+.highlight-mark {
+  position: relative;
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.highlight-selectors {
+  position: absolute;
+  top: -5px;
+  left: -1.5%;
+  width: 0%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: plus-lighter;
+  opacity: 1;
+  overflow: visible;
+  background: none;
+}
+
+/* Color backgrounds are now handled by inline styles in the component */
+
+.highlight-selector--left path,
+.highlight-selector--right path {
+  transform: scale(0);
+  transform-origin: center;
+}
+
+/* SVG positioning */
+.highlight-selector--left {
+  position: absolute;
+  left: -6px;
+  top: -2px;
+  transform: scale(0.4);
+  height: 108px;
+  width: 12px;
+}
+
+.highlight-selector--right {
+  position: absolute;
+  right: -6px;
+  bottom: -2px;
+  transform: scale(0.4) rotate(180deg);
+  height: 108px;
+  width: 12px;
+}

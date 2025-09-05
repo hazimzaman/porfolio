@@ -1,0 +1,33 @@
+.animated-background {
+  position: fixed;
+  display: grid;
+  width: 100vw !important;
+  height: 100vh !important;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+  gap: 0.5px; /* Very minimal gap */
+  /* Grid columns and rows will be set dynamically by JavaScript */
+  max-width: none !important;
+  min-width: 100vw !important;
+}
+
+.background__box {
+  
+  background: rgba(28, 28, 28, 0);
+  will-change: background, transform;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-width: 0px 0.5px 0.5px 0px;
+  border-style: solid;
+  border-color: rgba(255, 140, 0, 0.05);
+  box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+}
+
+.background__box:hover {
+  border-color: rgba(255, 140, 0, 0.1);
+  box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+}
+
+

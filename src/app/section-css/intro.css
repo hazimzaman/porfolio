@@ -1,0 +1,150 @@
+/* Intro Section Styles */
+
+.intro {
+  padding-top: var(--section-l);
+  padding-bottom: var(--section-xxl);
+  isolation: isolate;
+  position: relative;
+}
+
+.intro__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: var(--content-width);
+  position: relative;
+  z-index: 9999;
+}
+
+.intro__title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro__title {
+  width: 16ch;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  position: relative;
+  z-index: 3;
+  /* line-height: 1.3!important; */
+}
+
+/* Black bold text for intro title spans */
+.intro__title span {
+  color: var(--color-black);
+  font-weight: 700;
+  background-color: var(--color-primary);
+}
+
+.intro__content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.intro__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.intro__content-heading {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.intro__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.intro__content-description-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.intro__content-description {
+  width: 80%;
+}
+
+.intro__image-wrapper {
+  display: flex;
+  justify-content: end;
+  margin-top: -40px;
+  position: relative;
+  z-index: 9999;
+}
+
+.intro__image {
+  position: relative;
+}
+
+.intro__content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.intro__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.intro__content-heading {
+  font-weight: 400;
+  text-transform: uppercase;
+  display: inline-block;
+  padding-left: var(--space-m);
+  border-left: 7px solid var(--color-primary);
+}
+
+.intro__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+  padding-top: var(--section-xxl);
+}
+
+.intro__content-description-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.intro__content-description {
+  width: 94%;
+}
+
+.intro__image-wrapper {
+  display: flex;
+  justify-content: end;
+  margin-top: -40px;
+  position: relative;
+  justify-content: center;
+}
+
+.intro__image {
+  position: relative;
+}
+
+.intro__image::after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.btn--tools-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  row-gap: var(--space-xs);
+  column-gap: 8px;
+  bottom: 0;
+}

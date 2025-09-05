@@ -1,0 +1,518 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+/* Clean GSAP-only CSS - All Locomotive Scroll removed */
+
+/* Section Styles */
+@import "./section-css/intro.css";
+@import "./section-css/header.css";
+@import "./section-css/pro-solutions.css";
+@import "./section-css/benefits.css";
+@import "./section-css//project-sec.css";
+@import "./section-css/project-sec.css";
+@import "./section-css/community-solutions.css";
+@import "./section-css/tech-stack.css";
+@import "./section-css/testimonials.css";
+/* Component Styles */
+@import "./components/BlobComposition/BlobComposition.css";
+@import "./section-css/approch.css";
+
+
+
+
+@font-face {
+  font-family: "heading-font";
+  src: url("/fonts/neue/NeuePower-Heavy.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "heading-font";
+  src: url("/fonts/neue/NeuePowerTrial-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "heading-font";
+  src: url("/fonts/neue/NeuePowerTrial-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "heading-font";
+  src: url("/fonts/neue/NeuePowerTrial-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "heading-font";
+  src: url("/fonts/neue/NeuePowerTrial-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "text-font";
+  src: url("/fonts/ninetea/Ninetea-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "text-font";
+  src: url("/fonts/ninetea/Ninetea-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "text-font";
+  src: url("/fonts/ninetea/Ninetea-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "text-font";
+  src: url("/fonts/ninetea/Ninetea-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-primary: #ff751b;
+
+  --heading-h1: clamp(60px, 5vw + 16px, 115px);
+  --heading-h2: clamp(42px, 4vw + 12px, 70px);
+  --heading-h3: clamp(30px, 4vw + 12px, 45px);
+  --heading-h4: clamp(24px, 2.5vw + 4px, 32px);
+  --heading-h5: clamp(20px, 2vw + 2px, 28px);
+
+  --text-large: clamp(20px, 2vw + 2px, 24px);
+  --text-medium: clamp(16px, 1.5vw + 2px, 18px);
+
+  --lineheight-h1: clamp(69px, 5vw + 45px, 115px);
+  --lineheight-h2: clamp(64px, 4vw + 40px, 100px);
+  --lineheight-h3: clamp(48px, 4vw + 40px, 50px);
+  --lineheight-h4: clamp(29px, 2.5vw + 6px, 30px);
+  --lineheight-h5: clamp(23px, 2vw + 4px, 32px);
+  --lineheight-large: clamp(25px, 2vw + 4px, 30px);
+  --lineheight-medium: clamp(24px, 1.5vw + 4px, 30px);
+
+  --space-xs: clamp(6px, 1vw, 10px);
+  --space-s: clamp(10px, 1.5vw, 20px);
+  --space-sm: clamp(12px, 2vw, 25px);
+  --space-m: clamp(15px, 2.5vw, 30px);
+  --space-md: clamp(18px, 3vw, 35px);
+  --space-l: clamp(25px, 4vw, 45px);
+  --space-lg: clamp(30px, 4.5vw, 50px); /* 👈 added */
+  --space-xl: clamp(35px, 6vw, 67px);
+  --space-xxl: clamp(50px, 8vw, 100px);
+
+  --section-xs: clamp(70px, 5vw + 50px, 90px);
+  --section-s: clamp(80px, 6vw + 55px, 100px);
+  --section-m: clamp(90px, 7vw + 60px, 110px);
+  --section-l: clamp(110px, 8vw + 70px, 130px);
+  --section-xl: clamp(120px, 9vw + 75px, 150px);
+  --section-xxl: clamp(130px, 10vw + 80px, 170px);
+
+  --padding-xs: var(--space-xs);
+  --padding-s: var(--space-s);
+  --padding-sm: var(--space-sm);
+  --padding-m: var(--space-m);
+  --padding-md: var(--space-md);
+  --padding-l: var(--space-l);
+  --padding-lg: var(--space-lg);
+  --padding-xl: var(--space-xl);
+  --padding-xxl: var(--space-xxl);
+
+  /* Margin scale (same as padding for consistency) */
+  --margin-xs: var(--space-xs);
+  --margin-s: var(--space-s);
+  --margin-sm: var(--space-sm);
+  --margin-m: var(--space-m);
+  --margin-md: var(--space-md);
+  --margin-l: var(--space-l);
+  --margin-lg: var(--space-lg);
+  --margin-xl: var(--space-xl);
+  --margin-xxl: var(--space-xxl);
+
+  --radius-xl: clamp(29px, 1vw + 20px, 58px);
+  --radius-m: clamp(20px, 0.8vw + 15px, 40px);
+  --radius-s: clamp(12.5px, 0.5vw + 10px, 20px);
+
+  --font-heading: "heading-font", Arial, sans-serif;
+  --font-text: "text-font", Arial, sans-serif;
+
+  --content-width: 1630px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+/* Clean HTML and Body - Optimized for GSAP ScrollTrigger */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: var(--text-medium);
+  line-height: var(--lineheight-medium);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  overflow-x: hidden;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Clean text rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Content Grid System */
+.content-grid {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [content-start] min(var(--content-width), 100% - var(--gutter) * 2)
+    [content-end] minmax(var(--gutter), 1fr)
+    [full-end];
+}
+
+.content-grid > * {
+  grid-column: content-start / content-end;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space-xl);
+  padding: var(--padding-xxl) var(--padding-m);
+  margin: 0 auto;
+  align-items: center;
+}
+
+/* Typography */
+h1 {
+  font-size: var(--heading-h1);
+  line-height: var(--lineheight-h1);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--heading-h2);
+  line-height: var(--lineheight-h2);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: var(--heading-h3);
+  line-height: var(--lineheight-h3);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: var(--heading-h4);
+  line-height: var(--lineheight-h4);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: var(--heading-h5);
+  line-height: var(--lineheight-h5);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+button {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+p {
+  font-size: 18px;
+}
+
+/* Buttons and UI Elements */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-black);
+  padding: var(--padding-xs) var(--padding-s);
+  border-radius: var(--radius-xl);
+  width: auto;
+  min-width: 230px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 84px rgba(255, 117, 27, 0.6);
+  border: none;
+  cursor: pointer;
+  font-size: var(--text-medium);
+  line-height: var(--lineheight-medium);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: var(--font-text);
+  font-weight: 700;
+  width: 240px;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.black-bold {
+  color: var(--color-black);
+  position: relative;
+  font-weight: 800 !important;
+  background-color: #ff751b;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 0px 10px;
+  margin-bottom: 4px;
+  margin-top: 5px;
+  box-shadow: 0px 0px 84px rgba(255, 117, 27, 0.6);
+  backdrop-filter: blur(7px);
+}
+
+.black-bold--primary {
+  background-color: var(--color-black);
+  color: var(--color-primary);
+  font-weight: bold;
+  padding: 4px 4px;
+  display: inline-block;
+}
+
+.comma {
+  display: inline-block;
+  padding-left: 18px;
+  margin-left: 10px;
+  background-color: transparent !important;
+  color: var(--color-white) !important;
+}
+
+/* Background Elements */
+.bg-blocks-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  max-width: 100% !important;
+}
+
+.bg-blocks-wrapper-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn--tools-wrapper {
+  position: absolute;
+}
+
+.btn--tools {
+  padding: var(--padding-xs);
+  display: flex;
+  gap: var(--padding-xs);
+  color: var(--color-white);
+  backdrop-filter: blur(119px);
+  display: none;
+}
+
+/* Blob Elements */
+.blob-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+
+.blob-composition {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.blob-shape--primary {
+  width: 969px;
+  position: absolute;
+  height: 969px;
+  filter: blur(119.466px);
+  transform: matrix(0, 1, 1, 0, 0, 0);
+  background-color: var(--color-primary);
+  transform: translateX(-50%);
+  left: 45%;
+  top: 4%;
+  border-radius: 50%;
+}
+
+.blob-shape--secondary {
+  position: absolute;
+  width: 1069.96px;
+  height: 969.96px;
+  transform: translateX(-50%);
+  left: 12%;
+  top: -10%;
+  background: #000000;
+  filter: blur(119.466px);
+  transform: matrix(0, 1, 1, 0, 0, 0);
+  border-radius: 50%;
+}
+
+.blob-shape--tertiary {
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  filter: blur(119.466px);
+  transform: matrix(-0.71, 0.71, 0.71, 0.71, 0, 0);
+  top: 0%;
+  left: 20%;
+  border-radius: 50%;
+}
+
+.blob-composition__image {
+  transform: rotate(125deg);
+  filter: blur(119.466px);
+  top: 6%;
+  left: 45%;
+  position: absolute;
+}
+
+.blob-shape--quaternary {
+  position: absolute;
+  width: 382.34px;
+  height: 382.34px;
+  left: 48%;
+  top: 0;
+  background: #000000;
+  filter: blur(119.466px);
+  transform: matrix(0, 1, 1, 0, 0, 0);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  display: none;
+}
+
+.blob-shape--overlay {
+  width: 969px;
+  position: absolute;
+  height: 969px;
+  filter: blur(119.466px);
+  transform: matrix(0, 1, 1, 0, 0, 0);
+  background-color: var(--color-black);
+  left: 27%;
+  top: -40%;
+  border-radius: 50%;
+}
+
+/* Text Highlight Animation Styles */
+.highlight-mark {
+  position: relative;
+  background: transparent;
+  color: inherit;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.highlight-mark svg {
+  overflow: visible !important;
+}
+
+.highlight-selectors {
+  position: absolute;
+  top: 5px;
+  left: -4.5%;
+  width: 0%;
+  height: calc(86% + 10px);
+  pointer-events: none;
+  mix-blend-mode: plus-lighter;
+  opacity: 1;
+  overflow: visible;
+  display: block;
+}
+
+/* Orange highlight */
+.highlight-mark--orange .highlight-selectors {
+  background: rgba(255, 117, 27, 0.25);
+}
+
+/* Blue highlight */
+.highlight-mark--blue .highlight-selectors {
+  background: rgba(24, 110, 223, 0.33);
+}
+
+/* Initial scale for GSAP animation */
+.highlight-selector--left,
+.highlight-selector--right {
+  transform-origin: center;
+}
+
+/* Hide right SVG initially until animation triggers */
+.highlight-selector--right {
+  opacity: 0;
+  transform: scale(0) translateY(-50%) rotate(180deg);
+}
+
+/* SVG positioning */
+.highlight-selector--left {
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 11px;
+  display: block;
+}
+
+.highlight-selector--right {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  width: 12px;
+  display: block;
+}
+
+.highlight-svg-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

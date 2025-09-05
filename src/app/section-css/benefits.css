@@ -1,0 +1,247 @@
+.benefits {
+  padding-top: 0;
+  position: relative;
+  isolation: isolate;
+  padding-bottom: 0;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden; 
+  padding-right: 0px;
+  padding-left: 0px;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  background-color: rgb(37, 36, 36);
+  
+  /* Ensure visibility during pinning */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.benefits__inner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+/* Smooth pinning state */
+.benefits.pinning-active {
+  transform: translateZ(0);
+  transition: none !important; /* Remove any CSS transitions during pinning */
+}
+
+/* Smooth pinning spacer */
+.pin-spacer {
+  transition: none !important;
+}
+
+/* Smooth video transitions during pin/unpin */
+.iphone-mockup-video {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.iphone-mockup-wrapper {
+  position: absolute;
+  left: 50%;
+  overflow: hidden;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 410px;
+  height: 833px;
+  background-color: rgb(154, 127, 127);
+  box-sizing: border-box; 
+  border-radius: 51px;
+  transform-origin: center bottom;
+  will-change: transform, width, height, border-radius;
+
+  /* Enhanced smoothness for width expansion and pinning */
+  backface-visibility: hidden;
+  will-change: transform, width, height;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  /* Prevent jerks during positioning changes */
+  transform-origin: center center;
+  
+  /* Smooth scaling for GSAP animations */
+  transition: none; /* Disable CSS transitions for GSAP control */
+  
+  /* Ensure stable positioning */
+  margin: 0;
+  padding: 0;
+}
+
+.iphone-mockup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 900px;
+  width: 500px;
+  background-color: blue;
+}
+
+.iphone-mockup-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.iphone-mockup-img path {
+  width: 100%;
+  height: 100%;
+}
+
+.iphone-mockup-blob {
+  position: absolute;
+  width: 644px;
+  height: 644px;
+  background: rgba(0, 0, 0, 0.4);
+  filter: blur(137px);
+  bottom: 13%;
+  transform: translateX(50%);
+  right: 49%;
+  border-radius: 50%;
+  z-index: 1;
+  max-width: 100vw; /* Prevent overflow */
+  box-sizing: border-box;
+}
+
+.benefits-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--padding-xl);
+  opacity: 1;
+  pointer-events: auto;
+  overflow: hidden;
+  max-width: 100vw; /* Prevent overflow */
+  box-sizing: border-box;
+}
+
+.benefits-content-inner {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.benefits-title {
+  font-size: var(--heading-h1);
+  line-height: var(--lineheight-h1);
+  margin-bottom: var(--space-xl);
+  color: var(--color-white);
+}
+
+.dummy {
+  width: 100%;
+  height: 100%;
+  /* background-color: aliceblue; */
+  z-index: 999;
+}
+
+.benefits__content-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-white);
+  z-index: 5;
+  transform: translate(0px, 100%); /* Start completely below viewport */
+  transform-origin: bottom;
+  max-width: 100vw; /* Prevent overflow */
+  box-sizing: border-box;
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Ensure no scaling inheritance from parent */
+  isolation: isolate;
+  transform-style: flat;
+  border-top-right-radius: 51px;
+  border-top-left-radius: 51px;
+}
+
+.benefits__content-wrapper h1 {
+  font-size: 20px; /* Start from 20px */
+  color: var(--color-black);
+  text-align: center;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0; /* Start invisible */
+  transform: translateY(-150px); /* Start 150px above */
+  transform-origin: center center;
+  white-space: nowrap; /* Prevent text wrapping during animation */
+}
+
+/* iPhone mockup element - now using real element instead of ::after */
+.iphone-mockup-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/iphone-mockup.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+  display: none;
+  pointer-events: none;
+  transform-origin: center center;
+  transform: scale(1);
+  /* Start with normal scale */
+  opacity: 1;
+  visibility: visible;
+  /* Debug: Add a subtle border to see the element */
+  border: 1px solid rgba(255, 0, 0, 0.1);
+}
+
+/* Counter-scale approach: Children won't inherit parent scaling */
+.iphone-mockup-wrapper > * {
+  transform-origin: center center;
+}
+
+/* Specific counter-scaling for text and content elements */
+.iphone-mockup-wrapper h1,
+.iphone-mockup-wrapper h2,
+.iphone-mockup-wrapper h3,
+.iphone-mockup-wrapper h4,
+.iphone-mockup-wrapper h5,
+.iphone-mockup-wrapper h6,
+.iphone-mockup-wrapper p,
+.iphone-mockup-wrapper span,
+.iphone-mockup-wrapper
+  div:not(.iphone-mockup-element):not(.benefits__content-wrapper) {
+  transform-origin: center center;
+  /* Counter-scale will be applied via GSAP */
+}
+
+.mock-up-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.benefits__content-wrapper h1 {
+  color: black;
+}
