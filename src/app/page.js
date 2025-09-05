@@ -361,7 +361,7 @@ export default function Home() {
                 <div className="intro__content">
                   <div className="intro__content-heading-wrapper">
                     <h3 className="intro__content-heading">
-                      I'm <span className="bold">Hazim ZamaN</span>
+                      I&apos;m <span className="bold">Hazim ZamaN</span>
                     </h3>
                   </div>
                   <div className="intro__content-description-wrapper">
@@ -478,7 +478,7 @@ export default function Home() {
                   delay={0.3}
                   width="111%"
                 >
-                  Yours Won't
+                  Yours Won&apos;t
                 </TextHighlightScroll>
                 )
               </h2>
