@@ -118,7 +118,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: benefitsSection,
         start: "bottom bottom",
-        end: "+=400vh", // Extended for four phases
+        end: "+=1500vh", // Extended for longer scroll duration
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -136,44 +136,67 @@ export default function Home() {
     .to(benefitsContentWrapper, {
       y: "40%",
       ease: "none",
-      duration: 1
+      duration: 2
     })
-    // Phase 2.1: First expand height and width
+    // Phase 2.1: First expand height and width with immediate border radius change
     .to(mockupWrapper, {
       width: "30vw",
       height: "100vh",
-      duration: 1,
-      ease: "power2.inOut"
-    })
-    // Smooth border-radius transition after height is 100%
-    .to(mockupWrapper, {
       borderRadius: 0,
-      duration: 0.5,
+      duration: 34,
       ease: "power2.out"
-    }, ">")
-    // Phase 2.2: Separate animations for smoother transition
+    })
+    // Heading stage 1: 30px + opacity 0.3 when mockup reaches 30vw
+    .to(benefitsContentWrapper.querySelector('.benefits__content-wrapper-title'), {
+      opacity: 0.3,
+      y: 0,
+      fontSize: "30px",
+      duration: 34,
+      ease: "power2.out"
+    }, "<")
+    // Phase 2.2: Width expansion to 60vw
     .to(mockupWrapper, {
       width: "60vw",
-      duration: 1,
-      ease: "power2.inOut"
+      duration: 12,
+      ease: "power2.out"
     })
+    // Heading stage 2: 40px + opacity 0.7 when mockup reaches 60vw
+    .to(benefitsContentWrapper.querySelector('.benefits__content-wrapper-title'), {
+      fontSize: "40px",
+      opacity: 0.7,
+      duration: 12,
+      ease: "power2.out"
+    }, "<")
     .to(benefitsContentWrapper, {
       y: "0%",
-      duration: 0.7,
+      duration: 8,
       ease: "power2.out"
-    }, "<0.3")
+    }, "<0.5")
     // Smooth border-radius transition for content wrapper after reaching final position
     .to(benefitsContentWrapper, {
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
-      duration: 0.5,
+      duration: 1,
       ease: "power2.out"
-    }, ">") // Start 0.3 into the previous animation
+    }, ">") // Start 0.5 into the previous animation
     // Phase 3: iPhone mockup full width expansion
     .to(mockupWrapper, {
       width: "100vw",
-      duration: 1,
-      ease: "power2.inOut"
+      duration: 40,
+      ease: "power2.out"
+    })
+    // Heading stage 3: 100px + opacity 1 when mockup reaches 100vw
+    .to(benefitsContentWrapper.querySelector('.benefits__content-wrapper-title'), {
+      fontSize: "100px",
+      opacity: 1,
+      duration: 40,
+      ease: "power2.out"
+    }, "<")
+    // Scale the mock-up-img to 1.5x on X-axis after reaching 100vw
+    .to(mockupWrapper.querySelector('.mock-up-img'), {
+      scaleX: 1.5,
+      duration: 5,
+      ease: "power2.out"
     });
   });
 
@@ -624,16 +647,34 @@ export default function Home() {
                 Your browser does not support the video tag.
               </video> */}
               <div className="benefits__content-wrapper" ref={benefitsContentWrapperRef}>
-                <h1>hello</h1>
+                <div className="benefits__content-wrapper-inner">
+                <h2 className="benefits__content-wrapper-title">What <TextHighlightScroll
+                  color="orange"
+                  opacity={0.3}
+                  delay={0}
+                  width="102%"
+                >
+                  YOU GET 
+                </TextHighlightScroll> WHEN  <span className="black-bold">YOU WORK</span>  <TextHighlightScroll
+                  color="orange"
+                  opacity={0.3}
+                  delay={0}
+                  width="102%"
+                >
+                  with me 
+                </TextHighlightScroll></h2>
+                <div className="benefits__content-wrapper-description">
+              
+                </div>
+                </div>
               </div>
-              <div className="iphone-mockup-element"></div>
-              {/* <Image
-              src={"/iphone-mockup.svg"}
+              
+             
+            <img
+              src={"/iphone-mockup.png"}
               alt="iphone-mockup-image"
-              width={500}
-              height={900}
               className="mock-up-img"
-            /> */}
+            />
             </div>
           </div>
         </section>
@@ -701,7 +742,7 @@ export default function Home() {
             </div>
             <div className="bg-media-wrapper">
               <Image
-                src={"/bg-laptop.jpg"}
+                src={"/bg-laptop.png"}
                 width={1833}
                 height={1204}
                 alt="bg-laptop"
