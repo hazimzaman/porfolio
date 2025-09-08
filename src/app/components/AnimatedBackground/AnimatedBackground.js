@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useRef, useState } from "react";
+import { useGSAP } from "../../hooks/useGSAP";
 import "./AnimatedBackground.css";
 
 const MIN_BOX_SIZE = 80; // Increased from 40 to make boxes bigger
@@ -15,9 +15,10 @@ const AnimatedBackground = () => {
   });
   const [boxes, setBoxes] = useState([]);
 
-  useEffect(() => {
-    // Calculate optimal grid size based on screen dimensions
-    const calculateGridSize = () => {
+  useGSAP((gsap) => {
+
+      // Calculate optimal grid size based on screen dimensions
+      const calculateGridSize = () => {
       const background = backgroundRef.current;
       if (!background) return;
 

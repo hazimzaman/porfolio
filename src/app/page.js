@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState } from "react";
+import { useGSAP } from "./hooks/useGSAP";
+import ClientOnly from "./components/ClientOnly/ClientOnly";
 import BtnWhite from "./components/Button/BtnWhite";
 import AnimatedBlock from "./components/AnimatedBlock/AnimatedBlock";
 import BlurredEllipse from "./components/BlurredEllipse/BlurredEllipse";
@@ -69,44 +69,35 @@ export default function Home() {
   const cardsWrapperRef = useRef(null);
   const cards2WrapperRef = useRef(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP((gsap, ScrollTrigger) => {
+    const cardsWrapper = cardsWrapperRef.current;
+    const cards2Wrapper = cards2WrapperRef.current;
+    if (!cardsWrapper || !cards2Wrapper) return;
 
-    let ctx = gsap.context(() => {
-      const cardsWrapper = cardsWrapperRef.current;
-      const cards2Wrapper = cards2WrapperRef.current;
-      if (!cardsWrapper || !cards2Wrapper) return;
+    const cardsHeight = cardsWrapper.offsetHeight;
+    const wrapperHeight = cards2Wrapper.offsetHeight;
 
-      const cardsHeight = cardsWrapper.offsetHeight;
-      const wrapperHeight = cards2Wrapper.offsetHeight;
-
-      // Pin cards2-wrapper, translate cards-wrapper, then unpin before next section
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: cards2Wrapper,
-            start: "top top",
-            end: `+=${cardsHeight}`,
-            pin: true,
-            scrub: true,
-            anticipatePin: 1,
-            pinSpacing: true,
-          },
-        })
-        .to(cardsWrapper, {
-          y: -cardsHeight + wrapperHeight,
-          ease: "none",
-        });
-    });
-
-    return () => ctx.revert();
+    // Pin cards2-wrapper, translate cards-wrapper, then unpin before next section
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: cards2Wrapper,
+          start: "top top",
+          end: `+=${cardsHeight}`,
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          pinSpacing: true,
+        },
+      })
+      .to(cardsWrapper, {
+        y: -cardsHeight + wrapperHeight,
+        ease: "none",
+      });
   }, []);
 
   // Benefits section scroll animation
-  useEffect(() => {
-  gsap.registerPlugin(ScrollTrigger);
-
-  let ctx = gsap.context(() => {
+  useGSAP((gsap, ScrollTrigger) => {
     const benefitsSection = benefitsSectionRef.current;
     const benefitsContentWrapper = benefitsContentWrapperRef.current;
     const mockupWrapper = benefitsSection?.querySelector('.iphone-mockup-wrapper');
@@ -118,7 +109,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: benefitsSection,
         start: "bottom bottom",
-        end: "+=1500vh", // Extended for longer scroll duration
+        end: "+=1500vh",
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -132,13 +123,11 @@ export default function Home() {
         }
       }
     })
-    // Phase 1: Content wrapper initial movement
     .to(benefitsContentWrapper, {
       y: "40%",
       ease: "none",
       duration: 2
     })
-    // Phase 2.1: First expand height and width with immediate border radius change
     .to(mockupWrapper, {
       width: "30vw",
       height: "100vh",
@@ -146,7 +135,6 @@ export default function Home() {
       duration: 34,
       ease: "power2.out"
     })
-    // Heading stage 1: 30px + opacity 0.3 when mockup reaches 30vw
     .to(benefitsContentWrapper.querySelector('.benefits__content-wrapper-title'), {
       opacity: 0.3,
       y: 0,
@@ -154,13 +142,11 @@ export default function Home() {
       duration: 34,
       ease: "power2.out"
     }, "<")
-    // Phase 2.2: Width expansion to 60vw
     .to(mockupWrapper, {
       width: "60vw",
       duration: 12,
       ease: "power2.out"
     })
-    // Heading stage 2: 40px + opacity 0.7 when mockup reaches 60vw
     .to(benefitsContentWrapper.querySelector('.benefits__content-wrapper-title'), {
       fontSize: "40px",
       opacity: 0.7,
@@ -172,70 +158,31 @@ export default function Home() {
       duration: 8,
       ease: "power2.out"
     }, "<0.5")
-    // Smooth border-radius transition for content wrapper after reaching final position
     .to(benefitsContentWrapper, {
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
       duration: 1,
       ease: "power2.out"
-    }, ">") // Start 0.5 into the previous animation
-    // Phase 3: iPhone mockup full width expansion
+    }, ">")
     .to(mockupWrapper, {
       width: "100vw",
       duration: 40,
       ease: "power2.out"
     })
-    // Heading stage 3: 100px + opacity 1 when mockup reaches 100vw
     .to(benefitsContentWrapper.querySelector('.benefits__content-wrapper-title'), {
       fontSize: "100px",
       opacity: 1,
       duration: 40,
       ease: "power2.out"
     }, "<")
-    // Scale the mock-up-img to 1.5x on X-axis after reaching 100vw
     .to(mockupWrapper.querySelector('.mock-up-img'), {
       scaleX: 1.5,
       duration: 5,
       ease: "power2.out"
     });
-  });
-
-  return () => ctx.revert();
-}, []);
-
-  useEffect(() => {
-    const initializeGSAP = async () => {
-      const { initGSAP, refreshScrollTriggers } = await import(
-        "./utils/gsapManager"
-      );
-
-      // Initialize GSAP once for the entire app
-      await initGSAP();
-
-      // Handle window resize
-      const handleResize = () => {
-        refreshScrollTriggers();
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      // Initial refresh
-      setTimeout(() => {
-        refreshScrollTriggers();
-      }, 100);
-
-      // Cleanup function
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    };
-
-    const cleanup = initializeGSAP();
-
-    return () => {
-      if (cleanup) cleanup.then((cleanupFn) => cleanupFn && cleanupFn());
-    };
   }, []);
+
+
 
   // Example testimonials data
   const originalTestimonials = [
@@ -276,7 +223,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <section className="intro">
+        <section className="intro" suppressHydrationWarning>
           <div className="bg-blocks-wrapper">
             <div className="bg-blocks-wrapper-inner">
               {/* Blurred ellipse background */}
@@ -419,7 +366,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="pro-solutions">
+        <section className="pro-solutions" suppressHydrationWarning>
           <div className="bg-blocks-wrapper">
             <div className="bg-blocks-wrapper-inner">
               {/* Blurred linear gradient background */}
@@ -625,7 +572,7 @@ export default function Home() {
         </section>
         <ApproachSection />
         <div style={{ height: "100vh" }}></div>
-        <section className="benefits" ref={benefitsSectionRef}>
+        <section className="benefits" ref={benefitsSectionRef} suppressHydrationWarning>
           <div className="benefits__inner">
             <div className="iphone-mockup-wrapper">
               {/* <video
@@ -750,7 +697,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="projects-sec">
+        <section className="projects-sec" suppressHydrationWarning>
           <div className="project-sec__inner">
             <div className="project-sec__title-wrapper">
               <h2 className="project-sec__title">RECENT PROJECTS</h2>

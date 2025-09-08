@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import Image from "next/image";
-
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { useGSAP } from "../../hooks/useGSAP";
 
 const TextHighlightScroll = ({
   children,
@@ -19,28 +13,16 @@ const TextHighlightScroll = ({
 }) => {
   const markRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP((gsap, ScrollTrigger) => {
     const timer = setTimeout(() => {
       const mark = markRef.current;
-      if (!mark) {
-        console.log("Mark ref not found");
-        return;
-      }
+      if (!mark) return;
 
       const selectors = mark.querySelector(".highlight-selectors");
       const leftImage = mark.querySelector(".highlight-selector--left");
       const rightImage = mark.querySelector(".highlight-selector--right");
 
-      if (!selectors || !leftImage || !rightImage) {
-        console.log("Elements not found:", {
-          selectors,
-          leftImage,
-          rightImage,
-        });
-        return;
-      }
-
-      console.log(`Setting up scroll trigger for "${children}"`);
+      if (!selectors || !leftImage || !rightImage) return;
 
       // Set initial states
       gsap.set(selectors, {
@@ -61,11 +43,10 @@ const TextHighlightScroll = ({
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: mark,
-          start: "top 80%", // Animation starts when element is 80% from top of viewport
+          start: "top 80%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse", // play on enter, reverse on leave
-          markers: false, // Set to true for debugging
-          // Using default window scroller
+          toggleActions: "play none none reverse",
+          markers: false,
         },
       });
 
@@ -74,37 +55,24 @@ const TextHighlightScroll = ({
         tl.to({}, { duration: delay });
       }
 
-      // 1. Right SVG appears immediately when scroll trigger fires
+      // Animation sequence
       tl.to(rightImage, {
         scale: 1,
         opacity: 1,
         duration: 0.2,
         ease: "expo.out",
-      })
-        // 2. Background expands at the same time
-        .to(
-          selectors,
-          {
-            width: width,
-            duration: 1.2,
-            ease: "power3.out",
-          },
-          delay + 0.1
-        ); // Start almost immediately with right SVG
-
-      // Cleanup function
-      return () => {
-        ScrollTrigger.getAll().forEach((trigger) => {
-          if (trigger.trigger === mark) {
-            trigger.kill();
-          }
-        });
-      };
+      }).to(
+        selectors,
+        {
+          width: width,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        delay + 0.1
+      );
     }, 100);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [delay, children, color, width, opacity]);
 
   return (

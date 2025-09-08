@@ -4,8 +4,17 @@ let gsapInstance = null;
 let ScrollTriggerInstance = null;
 let isInitialized = false;
 
+// Check if we're on the client side
+const isClient = typeof window !== "undefined";
+
 // Single GSAP initialization for the entire app
 export const initGSAP = async () => {
+  // Only initialize on client side
+  if (!isClient) {
+    console.log("GSAP Manager: Server-side, skipping initialization");
+    return { gsap: null, ScrollTrigger: null };
+  }
+
   if (isInitialized) return { gsap: gsapInstance, ScrollTrigger: ScrollTriggerInstance };
 
   try {
@@ -19,6 +28,13 @@ export const initGSAP = async () => {
     gsap.config({
       force3D: true,
       nullTargetWarn: false,
+      autoSleep: 60,
+    });
+
+    // ScrollTrigger performance optimizations
+    ScrollTrigger.config({
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      ignoreMobileResize: true,
     });
 
     // Store instances
@@ -126,6 +142,11 @@ export const cleanupAllGSAP = () => {
   if (ScrollTriggerInstance) {
     ScrollTriggerInstance.getAll().forEach(trigger => trigger.kill());
     ScrollTriggerInstance.clearScrollMemory();
+    ScrollTriggerInstance.refresh();
+  }
+  if (gsapInstance) {
+    gsapInstance.globalTimeline.clear();
+    gsapInstance.set("*", { clearProps: "all" });
   }
   console.log("GSAP Manager: All animations cleaned up");
 };
@@ -135,4 +156,38 @@ export const refreshScrollTriggers = () => {
   if (ScrollTriggerInstance) {
     ScrollTriggerInstance.refresh();
   }
+};
+
+// Utility function for creating scroll-triggered animations
+export const createScrollAnimation = (config) => {
+  if (!gsapInstance || !ScrollTriggerInstance) {
+    console.error("GSAP Manager: Not initialized");
+    return null;
+  }
+
+  const {
+    trigger,
+    timeline,
+    scrollTriggerConfig = {},
+    onComplete,
+    onCleanup
+  } = config;
+
+  const tl = timeline || gsapInstance.timeline();
+  
+  const scrollTrigger = ScrollTriggerInstance.create({
+    trigger,
+    ...scrollTriggerConfig,
+    animation: tl,
+    onComplete: onComplete,
+  });
+
+  return {
+    timeline: tl,
+    scrollTrigger,
+    cleanup: () => {
+      scrollTrigger.kill();
+      if (onCleanup) onCleanup();
+    }
+  };
 };

@@ -1,35 +1,22 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useRef } from "react";
 import Image from "next/image";
+import { useGSAP } from "../../hooks/useGSAP";
 
 const TextHighlight = ({ children, color = "orange", delay = 0 }) => {
   const markRef = useRef(null);
 
-  useEffect(() => {
-    // Add a small delay to ensure DOM is ready
+  useGSAP((gsap) => {
     const timer = setTimeout(() => {
       const mark = markRef.current;
-      if (!mark) {
-        console.log("Mark ref not found");
-        return;
-      }
+      if (!mark) return;
 
       const selectors = mark.querySelector(".highlight-selectors");
       const leftImage = mark.querySelector(".highlight-selector--left");
       const rightImage = mark.querySelector(".highlight-selector--right");
 
-      if (!selectors || !leftImage || !rightImage) {
-        console.log("Elements not found:", {
-          selectors,
-          leftImage,
-          rightImage,
-        });
-        return;
-      }
-
-      console.log(`Starting animation for "${children}" with delay ${delay}`);
+      if (!selectors || !leftImage || !rightImage) return;
 
       // Set initial states
       gsap.set(selectors, {
@@ -46,32 +33,26 @@ const TextHighlight = ({ children, color = "orange", delay = 0 }) => {
         transformOrigin: "center",
       });
 
-      // Create animation timeline - starts immediately
+      // Create animation timeline
       const tl = gsap.timeline({ delay: 0.1 });
 
-      // 1. Right SVG appears immediately when animation starts
       tl.to(rightImage, {
         scale: 1,
         opacity: 1,
         duration: 0.2,
         ease: "expo.out",
-      })
-        // 2. Background expands at the same time
-        .to(
-          selectors,
-          {
-            width: "109%",
-            duration: 1.2,
-            ease: "power3.out",
-          },
-          0.1
-        ); // Start almost immediately with right SVG
+      }).to(
+        selectors,
+        {
+          width: "109%",
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        0.1
+      );
     }, 100);
 
-    // Cleanup function
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [delay, children]);
 
   return (

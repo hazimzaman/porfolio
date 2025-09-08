@@ -156,7 +156,6 @@
 
 /* Clean HTML and Body - Optimized for GSAP ScrollTrigger */
 html {
-  scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
   overflow-x: hidden;
