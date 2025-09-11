@@ -1,3 +1,5 @@
+
+
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 /* Clean GSAP-only CSS - All Locomotive Scroll removed */
@@ -88,14 +90,14 @@
   --color-white: #ffffff;
   --color-primary: #ff751b;
 
-  --heading-h1: clamp(60px, 5vw + 16px, 115px);
+  --heading-h1: clamp(40px, 5vw + 16px, 115px);
   --heading-h2: clamp(42px, 4vw + 12px, 70px);
   --heading-h3: clamp(30px, 4vw + 12px, 45px);
   --heading-h4: clamp(24px, 2.5vw + 4px, 32px);
   --heading-h5: clamp(20px, 2vw + 2px, 28px);
 
   --text-large: clamp(20px, 2vw + 2px, 24px);
-  --text-medium: clamp(16px, 1.5vw + 2px, 18px);
+  --text-medium: clamp(12px, 1.5vw + 2px, 18px);
 
   --lineheight-h1: clamp(69px, 5vw + 45px, 115px);
   --lineheight-h2: clamp(64px, 4vw + 40px, 100px);
@@ -269,8 +271,8 @@ p {
   color: var(--color-black);
   padding: var(--padding-xs) var(--padding-s);
   border-radius: var(--radius-xl);
-  width: auto;
-  min-width: 230px;
+  width: 100%!important;
+  max-width: 230px;
   transition: all 0.3s ease;
   box-shadow: 0px 0px 84px rgba(255, 117, 27, 0.6);
   border: none;

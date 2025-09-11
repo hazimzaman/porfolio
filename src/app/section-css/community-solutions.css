@@ -14,6 +14,7 @@
     isolation: isolate;
     padding-bottom: calc(var(--section-xxl)*1.5);
     padding-top: calc(var(--section-xxl)*1.5);
+    /* display: none; */
 }
 
 .community-solutions .bg-blocks-wrapper{

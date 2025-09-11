@@ -2,9 +2,12 @@
     font-size: var(--heading-h1);
     font-weight: 400;
   }
-  
 
-  .project-sec__title-wrapper {
+/* .projects-sec{
+  display: none;
+}   */
+  
+.project-sec__title-wrapper {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);

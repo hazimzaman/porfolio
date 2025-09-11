@@ -223,7 +223,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <section className="intro" suppressHydrationWarning>
+      <section className="intro" suppressHydrationWarning>
           <div className="bg-blocks-wrapper">
             <div className="bg-blocks-wrapper-inner">
               {/* Blurred ellipse background */}
@@ -326,46 +326,70 @@ export default function Home() {
                 </TextHighlightScroll>
               </h1>
             </div>
-            <div className="intro__content-grid">
-              <div className="intro__content-wrapper">
-                <div className="intro__content">
-                  <div className="intro__content-heading-wrapper">
-                    <h3 className="intro__content-heading">
-                      I&apos;m <span className="bold">Hazim ZamaN</span>
-                    </h3>
-                  </div>
-                  <div className="intro__content-description-wrapper">
-                    <p className="intro__content-description">
-                      I don&apos;t just build websites—I fix, optimize, and deliver
-                      scalable sites using Bricks Builder, ACSS, and custom
-                      frameworks that keep your clients happy and your agency
-                      ahead.
-                    </p>
-                    <p className="intro__content-description">
-                      No bloated code. No plugin overload. Just lean, mean,
-                      fast, future-proof websites built for growth. Whether
-                      you&apos;re a Bricks agency owner tired of patching broken
-                      builds or a business leader who wants a future-proof
-                      solution, I deliver.
-                    </p>
-                  </div>
+            <div className="intro__content-wrapper">
+              <div className="intro__content">
+                <div className="intro__content-heading-wrapper">
+                  <h3 className="intro__content-heading">
+                    I&apos;m <span className="bold">Hazim ZamaN</span>
+                  </h3>
                 </div>
-                <BtnWhite text="Outsource Development Now" />
+                <div className="intro__content-description-wrapper">
+                  <p className="intro__content-description">
+                    I don&apos;t just build websites—I fix, optimize, and deliver
+                    scalable sites using Bricks Builder, ACSS, and custom
+                    frameworks that keep your clients happy and your agency
+                    ahead.
+                  </p>
+                  <p className="intro__content-description">
+                    No bloated code. No plugin overload. Just lean, mean,
+                    fast, future-proof websites built for growth. Whether
+                    you&apos;re a Bricks agency owner tired of patching broken
+                    builds or a business leader who wants a future-proof
+                    solution, I deliver.
+                  </p>
+                </div>
               </div>
-              <div className="intro__image-wrapper">
-                <figure className="intro__image">
-                  <Image width={710} height={667} src={"/men.png"} alt="img" />
-                </figure>
-                <div className="btn--tools-wrapper">
-                  <button className="btn--tools">
-                    <div className="btn--tools-bullet"></div>
-                    Bricks Builder
-                  </button>
+              <BtnWhite text="Outsource Development Now" />
+            </div>
+            <div className="intro__image-wrapper">
+              <figure className="intro__image">
+                <Image width={710} height={667} src={"/men.png"} alt="img" />
+              </figure>
+              <div className="btn--tools-wrapper">
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">Bricks Builder</span>
                 </div>
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">ACSS</span>
+                </div>
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">ACF / Metabox</span>
+                </div>
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">WP Grid Builder</span>
+                </div>
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">LiteSpeed / WP Rocket</span>
+                </div>
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">WPCodebox</span>
+                </div>
+                <div className="tag">
+                  <div className="tag-dot"></div>
+                  <span className="tag-text">MotionPage</span>
+                </div>
+
               </div>
             </div>
           </div>
         </section>
+
         <section className="pro-solutions" suppressHydrationWarning>
           <div className="bg-blocks-wrapper">
             <div className="bg-blocks-wrapper-inner">
@@ -413,23 +437,9 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="pro-solutions__media-wrapper">
-            <div className="pro-solution__media">
-              <Image
-                className="pro-solution__media-image"
-                width={1192}
-                height={950}
-                src={"/laptop.png"}
-                alt="laptop-image"
-              />
-              <div className="left-gradient"></div>
-              <div className="right-gradient"></div>
-              <div className="top-gradient"></div>
-              <div className="bottom-gradient"></div>
-            </div>
-          </div>
+          
           <div className="pro-solutions__inner">
-            <div className="pro-solutions__title-wrapper">
+          <div className="pro-solutions__title-wrapper">
               <h2 className="pro-solutions__title">
                 Why {""}
                 <TextHighlightScroll
@@ -453,8 +463,10 @@ export default function Home() {
                 )
               </h2>
             </div>
-            <div className="pro-solution__content-wrapper">
-              <div className="pro-solution__content">
+            <div className="pro-solutions__content-wrapper">
+            
+            <div className="pro-solution__content">
+              <div className="pro-solution__content-inner">
                 <h4 className="pro-solution__content-heading">
                   Let&apos;s be blunt—too many chumps churn out bloated websites
                   with:
@@ -568,6 +580,19 @@ export default function Home() {
               </div>
               <button className="btn-primary">Get Scalable Sites</button>
             </div>
+             <div className="pro-solutions__media-wrapper">
+            <div className="pro-solution__media">
+              <Image
+                className="pro-solution__media-image"
+                width={1192}
+                height={950}
+                src={"/laptop.png"}
+                alt="laptop-image"
+              />
+            </div>
+          </div>
+            </div>
+           
           </div>
         </section>
         <ApproachSection />
